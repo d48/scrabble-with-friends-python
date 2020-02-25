@@ -62,7 +62,7 @@ A goal of mine is to get the time it takes for the computer player to choose the
 ### Updates that were made
 
 1. Pre-calculate all word Scrabble values from the word list for constant time look-up.
-2. Computer player: Check for best valid word score from a subset of the word list that match the length of the player's hand.
+2. Computer player: Check for best valid word score from a subset of the word list that match the length of the player's hand, instead of searching the entire list of ~83k words on each hand.
 
 # How to make it faster
 
