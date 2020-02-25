@@ -2,6 +2,8 @@ from ps4a import *
 import time
 from timeit import default_timer as timer
 
+ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
+
 #
 # Computer chooses a word
 #
@@ -85,10 +87,28 @@ def compPlayHand(hand, wordList, n, wordDict, wordDictByLength):
         # only look at a subset of the wordList that has length of words less than or equal to the length of the hand
         wordListByLength = []
 
-        # loop through wordDictByLength to concatentate lists for all keys <= handLen
+        # store list to loop through
+        tempList = []
+
+        tempHand = []
+        for item in hand:
+            if hand[item] > 0:
+                tempHand.append(item)
+
+        print(tempHand)
+
+        # loop through wordDictByLength
         for key in wordDictByLength:
+
+            # if key of word length fits within hand size
             if key <= handLen:
-                wordListByLength += wordDictByLength[key]
+                # loop through list and remove any words that begin with letters that don't exist in the hand
+                tempList = wordDictByLength[key]
+
+                # with tempHand, remove words that start with letters that are not in handList
+
+                # concatentate lists for all keys <= handLen
+                wordListByLength += tempList
 
         # computer's word
         start = timer()
