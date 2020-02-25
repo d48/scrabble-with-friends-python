@@ -51,14 +51,14 @@ This repo consists of optimizations for the algorithms in the `compPlayHand` and
 
 ## After
 
-* **27 seconds** for 7 letter hands (75% reduction in time to compute)
-* **280 ms** for 4 letter hands
+* **27 seconds** for 7 letter hands (75% reduction in time to compute).
+* **280 ms** for 4 letter hands.
 * **5 ms** for 2 letter hands.
 
 ### Updates that were made
 
-1. Pre-calculate all word scores based on Scrabble values for constant time look-up.
-2. Check for valid word score based on hand only on a subset of the word list (only look at words based on how many letters are in the player's hand)
+1. Pre-calculate all word Scrabble values from the word list for constant time look-up.
+2. Computer player: Check for best valid word score from a subset of the word list that match the length of the player's hand.
 
 # How to make it faster
 
