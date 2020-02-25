@@ -45,6 +45,8 @@ Enter n to deal a new hand, r to replay the last hand, or e to end game: e
 
 This repo consists of optimizations for the algorithms in the `compPlayHand` and `compChooseWord` functions to reduce computer turn in choosing the best word based on remaining letters in it's hand.
 
+A goal of mine is to get the time it takes for the computer player to choose the best scoring 7 and 8 letter word to be less than one second. 
+
 ## Before
 
  * **117 seconds** for all hands from _1_ to _n_ where _n_ number of letters in each hand.
@@ -63,3 +65,5 @@ This repo consists of optimizations for the algorithms in the `compPlayHand` and
 # How to make it faster
 
 One idea to make the algorithm faster for the computer player in choosing the best word would be to have all permutations of hands pre-calculated and saved in a hash table for **O(1)** lookup.
+
+Another idea is to remove words in the list that could not be possible to make based on the player's hand, thus reducing the search space. On each hand, the word list can be pruned based on all the words that start with letters that's don't exist in the hand.

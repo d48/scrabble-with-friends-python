@@ -210,9 +210,10 @@ def buildWordDict(wordList, n):
     return results
 
 
-def buildWordLengthDict(wordList):
+def buildWordLengthDict(wordList, handSize):
     """
     wordList: list of strings, words from 2 characters to 8 characters long
+    handSize: int, max hand size to save keys in dictionary
 
     Returns: dict (int -> list), a dictionary with keys that are integers that correpond to the length of each word in it's list of values
     """
@@ -226,11 +227,14 @@ def buildWordLengthDict(wordList):
         # get length of the word
         wordLen = len(word)
 
-        # get list if it exists or assign empty list if it doesn't
-        results[wordLen] = results.get(wordLen, [])
+        # only save words that fit within handSize
+        if wordLen <= handSize:
 
-        # append word to key list
-        results[wordLen].append(word)
+            # get list if it exists or assign empty list if it doesn't
+            results[wordLen] = results.get(wordLen, [])
+
+            # append word to key list
+            results[wordLen].append(word)
 
     # return list
     return results
@@ -241,7 +245,7 @@ def buildWordLengthDict(wordList):
 if __name__ == '__main__':
     wordList = loadWords()
     wordDict = buildWordDict(wordList, HAND_SIZE)
-    wordLengthDict = buildWordLengthDict(wordList)
+    wordLengthDict = buildWordLengthDict(wordList, HAND_SIZE)
 
     playGame(wordList, wordDict, wordLengthDict)
 
