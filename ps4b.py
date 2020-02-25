@@ -3,9 +3,7 @@ import time
 from timeit import default_timer as timer
 
 #
-#
 # Computer chooses a word
-#
 #
 def compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen):
     """
@@ -43,6 +41,7 @@ def compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen):
                 bestWord = word
     # return the best word you found.
     return bestWord
+
 
 #
 # Computer plays a hand
@@ -126,7 +125,6 @@ def compPlayHand(hand, wordList, n, wordDict, wordDictByLength):
 #
 # Problem #6: Playing a game
 #
-#
 def playGame(wordList, wordDict, wordDictByLength):
     """
     Allow the user to play an arbitrary number of hands.
@@ -206,10 +204,11 @@ def buildWordDict(wordList, n):
     # loop through each word
     for word in wordList:
 
-        # add to dict the wordscore fore each based on hand size
+        # add to dict the wordscore for each based on hand size
         results[word] = getWordScore(word, n)
 
     return results
+
 
 def buildWordLengthDict(wordList):
     """
@@ -245,5 +244,4 @@ if __name__ == '__main__':
     wordLengthDict = buildWordLengthDict(wordList)
 
     playGame(wordList, wordDict, wordLengthDict)
-
 
