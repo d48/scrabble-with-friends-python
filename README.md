@@ -6,30 +6,12 @@ This game is a lot like Scrabble or Words With Friends, if you've played those. 
 
 Current word list consists of up to 8 letter words for a total of 83,667 words.
 
-# Optimizations
-
-This repo consists of optimizations for the algorithms in the `compPlayHand` and `compChooseWord` functions to reduce computer turn in choosing the best word based on remaining letters in it's hand.
-
-*Prior to optimization*
-117 seconds for all hands from 1 to n where n number of letters in each hand.
-
-*After optimization*
-27 seconds for 7 letter hands (75% reduction in time to compute), 280 ms for 4 letter hands, 5 ms for 2 letter hands.
-
-Two optimizations were made:
-
-* Pre-calculate all word scores based on Scrabble values for constant time look-up.
-* Check for valid word score based on hand only on a subset of the word list (only look at words based on how many letters are in the player's hand)
-
-# How to make it faster
-
-The fastest would be to have all permutations of hands pre-calculated and saved in a hash table for **O(1)** lookup.
-
 
 # Usage
 
-
 ```bash
+$ python3 ps4b.py
+
 Enter n to deal a new hand, r to replay the last hand, or e to end game: n
 
 Enter u to have yourself play, c to have the computer play: u
@@ -58,3 +40,26 @@ Total score: 80 points.
 
 Enter n to deal a new hand, r to replay the last hand, or e to end game: e
 ```
+
+# Optimizations
+
+This repo consists of optimizations for the algorithms in the `compPlayHand` and `compChooseWord` functions to reduce computer turn in choosing the best word based on remaining letters in it's hand.
+
+## Before
+
+ * **117 seconds** for all hands from _1_ to _n_ where _n_ number of letters in each hand.
+
+## After
+
+* **27 seconds** for 7 letter hands (75% reduction in time to compute)
+* **280 ms** for 4 letter hands
+* **5 ms** for 2 letter hands.
+
+### Updates that were made
+
+1. Pre-calculate all word scores based on Scrabble values for constant time look-up.
+2. Check for valid word score based on hand only on a subset of the word list (only look at words based on how many letters are in the player's hand)
+
+# How to make it faster
+
+One idea to make the algorithm faster for the computer player in choosing the best word would be to have all permutations of hands pre-calculated and saved in a hash table for **O(1)** lookup.
