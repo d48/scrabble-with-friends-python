@@ -43,7 +43,9 @@ Enter n to deal a new hand, r to replay the last hand, or e to end game: e
 
 # Optimizations
 
-This repo consists of optimizations for the algorithms in the `compPlayHand` and `compChooseWord` functions to reduce computer turn in choosing the best word based on remaining letters in it's hand.
+The default game given in the class did not have any optimizations for computer choosing the best scoring word. There was an optional exercise to make that algorithm faster. This repo covers explorations into those algorithm optimizations.
+
+The main functions that were updated are found in `compPlayHand` and `compChooseWord`. The functions were updated to reduce the time for the computer turn in choosing the best word score based on remaining letters in it's hand.
 
 A goal of mine is to get the time it takes for the computer player to choose the best scoring 7 and 8 letter word to be less than one second. 
 
