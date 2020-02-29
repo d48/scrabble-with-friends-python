@@ -78,6 +78,6 @@ Version 2
 
 # How to make it faster
 
-See if any duplicate calculations are occurroing. If they are, use memoization to save hash for O(1) lookup.
+See if any duplicate calculations are occurring. If they are, use memoization to save hash for O(1) lookup.
 
 Another idea is to remove words in the list that could not be possible to make based on the player's hand, thus reducing the search space. On each hand, the word list can be pruned based on all the words that start with letters that's don't exist in the hand.
