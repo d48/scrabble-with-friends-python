@@ -75,7 +75,7 @@ def compPlayHand(hand, wordList, n, wordDict, wordDictByLength):
     handLen = calculateHandlen(hand)
 
     # As long as there are still letters left in the hand:
-    while (handLen > 0) :
+    while (handLen > 0):
         # Display the hand
         print("Current Hand: ", end=' ')
         displayHand(hand)
@@ -90,12 +90,13 @@ def compPlayHand(hand, wordList, n, wordDict, wordDictByLength):
         # store list to loop through
         tempList = []
 
-        tempHand = []
+        alphaLeft = ALPHABET
+
         for item in hand:
             if hand[item] > 0:
-                tempHand.append(item)
+                alphaLeft = alphaLeft.replace(item, '')
 
-        print(tempHand)
+        # print("characters left: ", alphaLeft)
 
         # loop through wordDictByLength
         for key in wordDictByLength:
@@ -106,9 +107,12 @@ def compPlayHand(hand, wordList, n, wordDict, wordDictByLength):
                 tempList = wordDictByLength[key]
 
                 # with tempHand, remove words that start with letters that are not in handList
+                for word in tempList:
+                    if word[0] in alphaLeft:
+                        wordDictByLength[key].remove(word)
 
                 # concatentate lists for all keys <= handLen
-                wordListByLength += tempList
+                wordListByLength += wordDictByLength[key]
 
         # computer's word
         start = timer()
@@ -190,7 +194,11 @@ def playGame(wordList, wordDict, wordDictByLength):
 
             if userInput == "n":
                 # deal new hand
-                lastHand = dealHand(HAND_SIZE).copy()
+                # lastHand = dealHand(HAND_SIZE).copy()
+
+                lastHand = {'o': 1, 'e': 1, 'w': 1, 'r': 1, 'v': 1, 'd': 1, 'm': 1}
+
+                # print(lastHand)
 
             # main loop for second user input to play yourself or have the computer play
             while True:
@@ -229,6 +237,37 @@ def buildWordDict(wordList, n):
 
     return results
 
+def build_wordlist_by_char(wordLengthDict):
+    """
+    wordLengthDict: dict(int -> list), dictionary of integer keys that correspond to length of words that are in it's list value
+
+    Returns: dict(int -> dict (string -> list)), a dictionary with keys that are integers that correspond to the length of each each word in the corresponding dictionary, where this dictionary's keys are characters for the list of words that start with that charcter. This is used to search on a sublist of words.
+    Example: { 2: { 'a': ['aa, 'ab, 'ad'], 'b': ['ba', 'bo', 'be'] }, 3: { 'a': ['ads', 'ace'], 'b': ['bae', 'bod'] } } ...
+    """
+    results = {}
+    tempList = []
+    firstChar = ''
+
+    # go through each key that correspond to word size
+    for item in wordLengthDict:
+        # get all words of that length
+        tempList = wordLengthDict[item]
+
+        # go through each word in the list
+        for word in tempList:
+            # get first character, and add to results[item][<char>].append(word)
+            results[item] = results.get(item, {})
+
+            # save first char
+            firstChar = word[0]
+
+            # check if first char exists to append to
+            results[item][firstChar] = results[item].get(firstChar, [])
+
+            # save word
+            results[item][firstChar].append(word)
+
+    return results
 
 def buildWordLengthDict(wordList, handSize):
     """
@@ -266,6 +305,8 @@ if __name__ == '__main__':
     wordList = loadWords()
     wordDict = buildWordDict(wordList, HAND_SIZE)
     wordLengthDict = buildWordLengthDict(wordList, HAND_SIZE)
+
+    # wordLengthDictByChar = build_wordlist_by_char(wordLengthDict)
 
     playGame(wordList, wordDict, wordLengthDict)
 
