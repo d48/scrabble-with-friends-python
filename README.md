@@ -75,18 +75,18 @@ A goal of mine is to get the time it takes for the computer player to choose the
 
 ### Updates that were made
 
-Version 1
+_Version 1_
 
 1. Pre-calculate all word Scrabble score values from the word list for constant time look-up.
 2. Computer player: Check for best valid word score from a subset of the word list that match the length of the player's hand, instead of searching the entire list of ~83k words on each hand.
 
-Version 2
+_Version 2_
 
-Reduces search space by removing word search on words that start with letters that the player does not have in their hand.
+* Reduces search space by removing word search on words that start with letters that the player does not have in their hand.
 
-Version 3
+_Version 3_
 
-Improves on Version 2 by limiting word search with a pre-step of grouping words by character. This makes the word list that is filtered quicker to put together before the best score is calculated for all words.
+* Improves on Version 2 by limiting word search with a pre-step of grouping words by character. This makes the word list that is filtered quicker to put together before the best score is calculated for all words.
 
 # How to make it faster
 
