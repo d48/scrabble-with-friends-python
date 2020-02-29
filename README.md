@@ -67,6 +67,12 @@ A goal of mine is to get the time it takes for the computer player to choose the
 
 * **9.3 seconds** for 7 letter hands (66% reduction from last version)
 
+## Version 3
+
+### After
+
+* **1.5 seconds** for 7 letter hands (84% reduction from last version)
+
 ### Updates that were made
 
 Version 1
@@ -74,11 +80,12 @@ Version 1
 2. Computer player: Check for best valid word score from a subset of the word list that match the length of the player's hand, instead of searching the entire list of ~83k words on each hand.
 
 Version 2
-1. Reduces search space by removing word search on words that start with letters that the player does not have in their hand.
+Reduces search space by removing word search on words that start with letters that the player does not have in their hand.
+
+Version 3
+Improves on Version 2 by limiting word search with a pre-step of grouping words by character. This makes the word list that is filtered quicker to put together before the best score is calculated for all words.
 
 # How to make it faster
-
-Improve on Version 2 by sub-indexing character length word lists by their character so it's faster to filter on list of words to search through.
 
 See if any duplicate calculations are occurring. If they are, use memoization to save hash for O(1) lookup.
 

@@ -98,21 +98,22 @@ def compPlayHand(hand, wordList, n, wordDict, wordDictByLength):
 
         # print("characters left: ", alphaLeft)
 
+        wordLengthDictByChar = build_wordlist_by_char(wordLengthDict)
+
         # loop through wordDictByLength
-        for key in wordDictByLength:
+        for key in wordLengthDictByChar:
 
             # if key of word length fits within hand size
             if key <= handLen:
                 # loop through list and remove any words that begin with letters that don't exist in the hand
-                tempList = wordDictByLength[key]
+                tempList = wordLengthDictByChar[key]
 
                 # with tempHand, remove words that start with letters that are not in handList
-                for word in tempList:
-                    if word[0] in alphaLeft:
-                        wordDictByLength[key].remove(word)
+                for char in tempList:
+                    if char not in alphaLeft:
 
-                # concatentate lists for all keys <= handLen
-                wordListByLength += wordDictByLength[key]
+                        # concatentate lists for all keys <= handLen
+                        wordListByLength += tempList[char]
 
         # computer's word
         start = timer()
@@ -194,9 +195,9 @@ def playGame(wordList, wordDict, wordDictByLength):
 
             if userInput == "n":
                 # deal new hand
-                # lastHand = dealHand(HAND_SIZE).copy()
+                lastHand = dealHand(HAND_SIZE).copy()
 
-                lastHand = {'o': 1, 'e': 1, 'w': 1, 'r': 1, 'v': 1, 'd': 1, 'm': 1}
+                # lastHand = {'o': 1, 'e': 1, 'w': 1, 'r': 1, 'v': 1, 'd': 1, 'm': 1}
 
                 # print(lastHand)
 
@@ -305,8 +306,6 @@ if __name__ == '__main__':
     wordList = loadWords()
     wordDict = buildWordDict(wordList, HAND_SIZE)
     wordLengthDict = buildWordLengthDict(wordList, HAND_SIZE)
-
-    # wordLengthDictByChar = build_wordlist_by_char(wordLengthDict)
 
     playGame(wordList, wordDict, wordLengthDict)
 
