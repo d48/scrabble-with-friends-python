@@ -78,5 +78,7 @@ Version 2
 
 # How to make it faster
 
+Improve on Version 2 by sub-indexing character length word lists by their character so it's faster to filter on list of words to search through.
+
 See if any duplicate calculations are occurring. If they are, use memoization to save hash for O(1) lookup.
 
