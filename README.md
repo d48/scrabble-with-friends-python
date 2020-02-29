@@ -49,23 +49,35 @@ The main functions that were updated are found in `compPlayHand` and `compChoose
 
 A goal of mine is to get the time it takes for the computer player to choose the best scoring 7 and 8 letter word to be less than one second. 
 
-## Before
+## Version 1
+
+### Before
 
  * **117 seconds** for all hands from _1_ to _n_ where _n_ number of letters in each hand.
 
-## After
+### After
 
 * **27 seconds** for 7 letter hands (75% reduction in time to compute).
 * **280 ms** for 4 letter hands.
 * **5 ms** for 2 letter hands.
 
+## Version 2
+
+### After
+
+* **9.3 seconds** for 7 letter hands (66% reduction from last version)
+
 ### Updates that were made
 
-1. Pre-calculate all word Scrabble values from the word list for constant time look-up.
+Version 1
+1. Pre-calculate all word Scrabble score values from the word list for constant time look-up.
 2. Computer player: Check for best valid word score from a subset of the word list that match the length of the player's hand, instead of searching the entire list of ~83k words on each hand.
+
+Version 2
+1. Reduces search space by removing word search on words that start with letters that the player does not have in their hand.
 
 # How to make it faster
 
-One idea to make the algorithm faster for the computer player in choosing the best word would be to have all permutations of hands pre-calculated and saved in a hash table for **O(1)** lookup.
+See if any duplicate calculations are occurroing. If they are, use memoization to save hash for O(1) lookup.
 
 Another idea is to remove words in the list that could not be possible to make based on the player's hand, thus reducing the search space. On each hand, the word list can be pruned based on all the words that start with letters that's don't exist in the hand.
