@@ -61,8 +61,6 @@ A goal of mine is to get the time it takes for the computer player to choose the
 * **280 ms** for 4 letter hands.
 * **5 ms** for 2 letter hands.
 
-_Update notes_
-
 1. Pre-calculate all word Scrabble score values from the word list for constant time look-up.
 2. Computer player: Check for best valid word score from a subset of the word list that match the length of the player's hand, instead of searching the entire list of ~83k words on each hand.
 
@@ -71,32 +69,24 @@ _Update notes_
 
 * **9.3 seconds** for 7 letter hands (66% reduction from last version).
 
-_Update notes_
-
-* Reduces search space by removing word search on words that start with letters that the player does not have in their hand.
+Reduces search space by removing word search on words that start with letters that the player does not have in their hand.
 
 ## Version 3
 
 * **1.5 seconds** for 7 letter hands (84% reduction from last version).
 
-_Update notes_
-
-* Improves on Version 2 by limiting word search with a pre-step of grouping words by character. This makes the word list that is filtered quicker to put together before the best score is calculated for all words.
+Improves on Version 2 by limiting word search with a pre-step of grouping words by character. This makes the word list that is filtered quicker to put together before the best score is calculated for all words.
 
 ## Version 4
 
 * **0.5 seconds** or **574 ms** for 7 letters hands (66% reduction from last version).
 
-_Update notes_
-
-* Similar to Version 3 with pre-step by going through reduced word list but checking through each word to see if last character is not in player's hand. On average this reduced the search space for checking the best word the computer can make from 33-66%.
+Similar to Version 3 with pre-step by going through reduced word list but checking through each word to see if last character is not in player's hand. On average this reduced the search space for checking the best word the computer can make from 33-66%.
 
 
 ## Version 5 
 
 * **100 ms** for 7 letters hands (80% reduction from last version) and **150ms** average for 8 letter hands.
-
-_Update notes_
 
 Continue with Version 4 step of further reducing search space for best scoring word. Implement an algorithm to check if any characters exist in a word that is a character not in the player's hand since we know the player would not be able to make that word. This gave an average reduction of the search space by 95-99% of the total words and gave great actual search time of around 100 ms average for computer choosing the best scoring word.
 
