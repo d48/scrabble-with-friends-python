@@ -98,22 +98,30 @@ def compPlayHand(hand, wordList, n, wordDict, wordDictByLength):
 
         # print("characters left: ", alphaLeft)
 
+
+        # main optimization part 1: this reorganizes word list to filter through
         wordLengthDictByChar = build_wordlist_by_char(wordLengthDict)
+
+        # main optimization part 2: this filters through all word lists from collection, and removes words that start with characters
+        # that are not possible that start with characters that are not in player's hand
 
         # loop through wordDictByLength
         for key in wordLengthDictByChar:
 
             # if key of word length fits within hand size
             if key <= handLen:
-                # loop through list and remove any words that begin with letters that don't exist in the hand
+                # view sublist based on hand length possibilities
                 tempList = wordLengthDictByChar[key]
 
-                # with tempHand, remove words that start with letters that are not in handList
+                # loop through sublist of all keys in alphabet
                 for char in tempList:
+
+                    # check if character is not in the remaining alphabet that represents letters not in hand
                     if char not in alphaLeft:
 
-                        # concatentate lists for all keys <= handLen
+                        # concatenate words that start with character to words to search through
                         wordListByLength += tempList[char]
+
 
         # computer's word
         start = timer()
