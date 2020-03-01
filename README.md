@@ -94,7 +94,7 @@ _Update notes_
 # How to make it faster
 
 ~~See if any duplicate calculations are occurring. If they are, use memoization to save hash for O(1) lookup.~~ 
- * There are no recurring calculations besides checking 
+ * There are no recurring calculations being made besides checking if player has a valid hand to make the word
  
-Continue with Version 4 step of further reducing search space for best word to quickly check if any characters exist in a word that is a character that is not in the player's hand since we know the player would not be able to make that word
+Continue with Version 4 step of further reducing search space for best scoring word. Implement an algorithm to check if any characters exist in a word that is a character not in the player's hand since we know the player would not be able to make that word.
 
