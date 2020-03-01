@@ -7,7 +7,7 @@ ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 #
 # Computer chooses a word
 #
-def compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen):
+def compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen, wordsSeen):
     """
     Given a hand and a wordList, find the word that gives
     the maximum value score, and return it.
@@ -31,7 +31,10 @@ def compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen):
     bestWord = None
 
     # For each word in the wordList
+
     for word in wordListByLength:
+        wordsSeen[word] = wordsSeen.get(word, 0) + 1
+
         # If you can construct the word from your hand
         if isValidWord(word, hand, wordListByLength):
             # find out how much making that word is worth
@@ -123,11 +126,24 @@ def compPlayHand(hand, wordList, n, wordDict, wordDictByLength):
                         wordListByLength += tempList[char]
 
 
+        # hash for word seen to optimize best word look up
+        wordsSeen = {}
+
         # computer's word
         start = timer()
-        word = compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen)
+        word = compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen, wordsSeen)
         end = timer()
         print("Time to choose word: ", end - start)
+
+
+        # print debug output to file
+        output = open('output.txt', 'w')
+
+        for item in sorted(wordsSeen, reverse=True):
+            print(item, ":", wordsSeen[item], file=output)
+
+        output.close()
+
         # If the input is a single period:
         if word == None:
             # End the game (break out of the loop)
