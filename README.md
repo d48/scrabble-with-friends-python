@@ -91,10 +91,12 @@ _Update notes_
 
 * Similar to Version 3 with pre-step by going through reduced word list but checking through each word to see if last character is not in player's hand. On average this reduced the search space for checking the best word the computer can make from 33-66%.
 
-# How to make it faster
 
-~~See if any duplicate calculations are occurring. If they are, use memoization to save hash for O(1) lookup.~~ 
- * There are no recurring calculations being made besides checking if player has a valid hand to make the word
- 
-Continue with Version 4 step of further reducing search space for best scoring word. Implement an algorithm to check if any characters exist in a word that is a character not in the player's hand since we know the player would not be able to make that word.
+## Version 5 
+
+* **100 ms** for 7 letters hands (80% reduction from last version).
+
+_Update notes_
+
+Continue with Version 4 step of further reducing search space for best scoring word. Implement an algorithm to check if any characters exist in a word that is a character not in the player's hand since we know the player would not be able to make that word. This gave an average reduction of the search space by 95-99% of the total words and gave great actual search time of around 100 ms average for computer choosing the best scoring word.
 

@@ -81,6 +81,9 @@ def compPlayHand(hand, wordList, n, wordDict, wordDictByLength):
         print("Current Hand: ", end=' ')
         displayHand(hand)
 
+        # debug for algorithm timer
+        start = timer()
+
         # there are no valid 1 letter words for this game
         if handLen == 1:
             break
@@ -121,22 +124,24 @@ def compPlayHand(hand, wordList, n, wordDict, wordDictByLength):
                         # concatenate words that start with character to words to search through
                         wordListByLength += tempList[char]
 
-        wordListCopy = wordListByLength
+        wordListCopy = wordListByLength.copy()
 
-        # main optimization part 3: go through each word in the list and remove any word whose last character is not in player's hand
-        # on average, this remove 30 - 50% of the words
+        # main optimization part 4: go through each word in the list and remove any word whose last character is not in player's hand
+        # on average, this remove 95-99% of the words
 
         # go through each word
         for word in wordListByLength:
-            # check for last character to see if it's a character that are not in the player's hand
-            if word[-1] in alphaLeft:
-                # remove it since player can not make this word
-                wordListCopy.remove(word)
+            # for each character in word
+            for character in word:
+                # check if character is in alphaLeft.
+                if character in alphaLeft:
+                    # remove it since player can not make this word
+                    wordListCopy.remove(word)
+                    break
 
         wordListByLength = wordListCopy
 
         # computer's word
-        start = timer()
         word = compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen)
         end = timer()
         print("Time to choose word: ", end - start)
