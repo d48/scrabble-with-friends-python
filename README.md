@@ -94,7 +94,7 @@ _Update notes_
 
 ## Version 5 
 
-* **100 ms** for 7 letters hands (80% reduction from last version).
+* **100 ms** for 7 letters hands (80% reduction from last version) and **150ms** average for 8 letter hands.
 
 _Update notes_
 
