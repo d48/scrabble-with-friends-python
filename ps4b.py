@@ -30,10 +30,6 @@ def compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen):
     # Create a new variable to store the best word seen so far (initially None)
     bestWord = None
 
-    # optimization: skip word if characters left shows up at end of screen
-
-
-
     # For each word in the wordList
     for word in wordListByLength:
 

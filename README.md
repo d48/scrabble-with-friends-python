@@ -61,34 +61,40 @@ A goal of mine is to get the time it takes for the computer player to choose the
 * **280 ms** for 4 letter hands.
 * **5 ms** for 2 letter hands.
 
-## Version 2
-
-### After
-
-* **9.3 seconds** for 7 letter hands (66% reduction from last version)
-
-## Version 3
-
-### After
-
-* **1.5 seconds** for 7 letter hands (84% reduction from last version)
-
-### Updates that were made
-
-_Version 1_
+_Update notes_
 
 1. Pre-calculate all word Scrabble score values from the word list for constant time look-up.
 2. Computer player: Check for best valid word score from a subset of the word list that match the length of the player's hand, instead of searching the entire list of ~83k words on each hand.
 
-_Version 2_
+
+## Version 2
+
+* **9.3 seconds** for 7 letter hands (66% reduction from last version).
+
+_Update notes_
 
 * Reduces search space by removing word search on words that start with letters that the player does not have in their hand.
 
-_Version 3_
+## Version 3
+
+* **1.5 seconds** for 7 letter hands (84% reduction from last version).
+
+_Update notes_
 
 * Improves on Version 2 by limiting word search with a pre-step of grouping words by character. This makes the word list that is filtered quicker to put together before the best score is calculated for all words.
 
+## Version 4
+
+* **0.5 seconds** or **574 ms** for 7 letters hands (66% reduction from last version).
+
+_Update notes_
+
+* Similar to Version 3 with pre-step by going through reduced word list but checking through each word to see if last character is not in player's hand. On average this reduced the search space for checking the best word the computer can make from 33-66%.
+
 # How to make it faster
 
-See if any duplicate calculations are occurring. If they are, use memoization to save hash for O(1) lookup.
+~~See if any duplicate calculations are occurring. If they are, use memoization to save hash for O(1) lookup.~~ 
+ * There are no recurring calculations besides checking 
+ 
+Continue with Version 4 step of further reducing search space for best word to quickly check if any characters exist in a word that is a character that is not in the player's hand since we know the player would not be able to make that word
 
