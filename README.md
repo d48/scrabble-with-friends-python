@@ -47,7 +47,8 @@ The default game given in the class did not have any optimizations for computer 
 
 The main functions that were updated are found in `compPlayHand` and `compChooseWord`. The functions were modified to reduce the time for the computer turn in choosing the best word score based on remaining letters in it's hand by reducing the search space.
 
-A goal of mine is to get the time it takes for the computer player to choose the best scoring 7 and 8 letter word to be less than one second. 
+## Goal
+A goal of mine is to get the time it takes for the computer player to choose the best scoring 7 and 8 letter word to be **less than one second**. 
 
 ## Version 1
 
