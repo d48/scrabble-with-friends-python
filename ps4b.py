@@ -7,7 +7,7 @@ ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 #
 # Computer chooses a word
 #
-def compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen, wordsSeen):
+def compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen):
     """
     Given a hand and a wordList, find the word that gives
     the maximum value score, and return it.
@@ -30,10 +30,12 @@ def compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen, words
     # Create a new variable to store the best word seen so far (initially None)
     bestWord = None
 
-    # For each word in the wordList
+    # optimization: skip word if characters left shows up at end of screen
 
+
+
+    # For each word in the wordList
     for word in wordListByLength:
-        wordsSeen[word] = wordsSeen.get(word, 0) + 1
 
         # If you can construct the word from your hand
         if isValidWord(word, hand, wordListByLength):
@@ -99,8 +101,6 @@ def compPlayHand(hand, wordList, n, wordDict, wordDictByLength):
             if hand[item] > 0:
                 alphaLeft = alphaLeft.replace(item, '')
 
-        # print("characters left: ", alphaLeft)
-
 
         # main optimization part 1: this reorganizes word list to filter through
         wordLengthDictByChar = build_wordlist_by_char(wordLengthDict)
@@ -125,24 +125,26 @@ def compPlayHand(hand, wordList, n, wordDict, wordDictByLength):
                         # concatenate words that start with character to words to search through
                         wordListByLength += tempList[char]
 
+        wordListCopy = wordListByLength
 
-        # hash for word seen to optimize best word look up
-        wordsSeen = {}
+        # main optimization part 3: go through each word in the list and remove any word whose last character is not in player's hand
+        # on average, this remove 30 - 50% of the words
+
+        # go through each word
+        for word in wordListByLength:
+            # check for last character to see if it's a character that are not in the player's hand
+            if word[-1] in alphaLeft:
+                # remove it since player can not make this word
+                wordListCopy.remove(word)
+
+        wordListByLength = wordListCopy
 
         # computer's word
         start = timer()
-        word = compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen, wordsSeen)
+        word = compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen)
         end = timer()
         print("Time to choose word: ", end - start)
 
-
-        # print debug output to file
-        output = open('output.txt', 'w')
-
-        for item in sorted(wordsSeen, reverse=True):
-            print(item, ":", wordsSeen[item], file=output)
-
-        output.close()
 
         # If the input is a single period:
         if word == None:
