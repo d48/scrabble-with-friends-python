@@ -16,7 +16,7 @@ Tournament Word List (TWL06)
 # Usage
 
 ```bash
-$ python3 ps4b.py
+$ python3 wordgameb.py
 
 Enter n to deal a new hand, r to replay the last hand, or e to end game: n
 
