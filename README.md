@@ -1,8 +1,8 @@
 # Overview
 
-Command-line word game in Python from the MITx 6.00.1x Intro to Computer Science class: Scrabble with Friends
+Command-line word game in Python from an online comp sci class: words with friends
 
-This game is a lot like Scrabble or Words With Friends, if you've played those. Letters are dealt to players, who then construct one or more words out of their letters. Each valid word receives a score, based on the length of the word and the letters in that word.
+Letters are dealt to players, who then construct one or more words out of their letters. Each valid word receives a score, based on the length of the word and the letters in that word.
 
 Current word list consists of up to 8 letter words for a total of 83,667 words.
 
