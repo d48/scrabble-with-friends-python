@@ -1,4 +1,4 @@
-from ps4a import *
+from wordgamea import *
 import time
 from timeit import default_timer as timer
 
