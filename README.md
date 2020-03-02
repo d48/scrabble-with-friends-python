@@ -4,7 +4,13 @@ Command-line word game in Python from an online comp sci class: words with frien
 
 Letters are dealt to players, who then construct one or more words out of their letters. Each valid word receives a score, based on the length of the word and the letters in that word.
 
-Current word list consists of up to 8 letter words for a total of 83,667 words.
+Original word list consists of up to 8 letter words for a total of 83,667 words.
+
+Updated Tournament Word List used of up to 8 letter words for a total of 178,691 words.
+
+**Note**
+Tournament Word List (TWL06)
+* TWL - the American dictionary, based on the Official Scrabble Players' Dictionary , used in North American and Canadian tournaments.
 
 
 # Usage

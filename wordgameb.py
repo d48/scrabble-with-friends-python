@@ -144,7 +144,7 @@ def compPlayHand(hand, wordList, n, wordDict, wordDictByLength):
         # computer's word
         word = compChooseWord(hand, wordList, n, wordDict, wordListByLength, handLen)
         end = timer()
-        # print("Time to choose word: ", end - start)
+        print("Time to choose word: ", end - start)
 
 
         # If the input is a single period:
