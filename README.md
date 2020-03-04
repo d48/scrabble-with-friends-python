@@ -6,11 +6,12 @@ Letters are dealt to players, who then construct one or more words out of their 
 
 Original word list consists of up to 8 letter words for a total of 83,667 words.
 
-Updated Tournament Word List used of up to 8 letter words for a total of 178,691 words.
+Updated word list of up to 8 letter words for a total of 370,103 words.
 
-**Note**
-Tournament Word List (TWL06)
-* TWL - the American dictionary, based on the Official Scrabble Players' Dictionary , used in North American and Canadian tournaments.
+**Note on word lists**
+* `words.txt` - 83,667 words
+* `TWL06.txt` Tournament Word List (TWL06): TWL - the American dictionary, based on the Official Scrabble Players' Dictionary , used in North American and Canadian tournaments - 178,691 words
+* `words_alpha.txt` - 370,103 words
 
 
 # Usage
@@ -97,3 +98,5 @@ Similar to Version 3 with pre-step by going through reduced word list but checki
 
 Continue with Version 4 step of further reducing search space for best scoring word. Implement an algorithm to check if any characters exist in a word that is a character not in the player's hand since we know the player would not be able to make that word. This gave an average reduction of the search space by 95-99% of the total words and gave great actual search time of around 100 ms average for computer choosing the best scoring word.
 
+**Note**
+* On a word list of 370k words, average look up time in 8-letter hands are 300ms.

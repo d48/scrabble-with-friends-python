@@ -15,7 +15,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "TWL06.txt"
+WORDLIST_FILENAME = "words_alpha.txt"
 
 def loadWords():
     """
