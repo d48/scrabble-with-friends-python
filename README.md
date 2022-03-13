@@ -13,6 +13,9 @@ Updated word list of up to 8 letter words for a total of 370,103 words.
 * `TWL06.txt` Tournament Word List (TWL06): TWL - the American dictionary, based on the Official Scrabble Players' Dictionary , used in North American and Canadian tournaments - 178,691 words
 * `words_alpha.txt` - 370,103 words
 
+# Requirements
+
+Download [Python3](https://www.python.org/downloads/).
 
 # Usage
 
